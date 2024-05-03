@@ -15,10 +15,10 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('test')" :active="request()->routeIs('test')" class="text-white">
-                        {{ __('Test') }}
+                        {{ __('Exam') }}
                     </x-nav-link>  
                     <x-nav-link :href="route('student')" :active="request()->routeIs('student')" class="text-white">
-                        {{ __('Student user') }}
+                        {{ __('Student Account') }}
                     </x-nav-link> 
                     <x-nav-link :href="route('export')" :active="request()->routeIs('export')" class="text-white">
                         {{ __('Export') }}
