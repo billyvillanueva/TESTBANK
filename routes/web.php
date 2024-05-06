@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,9 +17,7 @@ Route::get('/test', function () {
 Route::get('/export', function () {
     return view('export');
 })->middleware(['auth', 'verified'])->name('export');
-Route::get('/student', function () {
-    return view('student');
-})->middleware(['auth', 'verified'])->name('student');
+Route::get('/student', [StudentController::class, 'student'])->middleware(['auth', 'verified'])->name('student');
 
 
 Route::middleware('auth')->group(function () {
@@ -26,5 +25,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::post('/add', [StudentController::class, 'addstudent'])->name('addStudent');
+
+
+
+
 
 require __DIR__.'/auth.php';
