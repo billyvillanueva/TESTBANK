@@ -114,7 +114,7 @@
             <x-text-input id="A" name="A" type="text" class="mt-1 block w-full" autocomplete="A" />
        
         </div>
-        <div>
+             <div>
             <x-input-label for="B" :value="__('B')" />
             <x-text-input id="B" name="B" type="text" class="mt-1 block w-full" autocomplete="B" />
        
