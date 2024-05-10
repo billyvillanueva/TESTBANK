@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <x-application-logo class="block h-16 w-auto fill-current text-gray-800"/>
                     </a>
                 </div>
                 <!-- Navigation Links -->
@@ -14,18 +14,50 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('test')" :active="request()->routeIs('test')" class="text-white">
+                    <x-nav-link id="exam" :href="route('quizes')" :active="request()->routeIs(['quizes','midterm','finals'])" class="text-white">
                         {{ __('Exam') }}
-                    </x-nav-link>  
+                    </x-nav-link>     
+                @if(Auth::user()->usertype==='user')
+                    <a  class="text-white opacity-50 inline-flex items-center border-white text-sm font-medium leading-5 focus:outline-none focus:border-white transition duration-150 ease-in-out" style="cursor:not-allowed; user-select:none;" >
+                        {{ __('Student Account') }}
+                            <div class="ms-2">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                    </a>
+                    <a  class="text-white opacity-50 inline-flex items-center border-white text-sm font-medium leading-5 focus:outline-none focus:border-white transition duration-150 ease-in-out" style="cursor:not-allowed; user-select:none;" >
+                        {{ __('Prof Account') }}
+                            <div class="ms-2">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                    </a>  
+                @else
                     <x-nav-link :href="route('student')" :active="request()->routeIs('student')" class="text-white">
                         {{ __('Student Account') }}
+                            <div class="ms-2">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
                     </x-nav-link> 
+                    <x-nav-link :href="route('prof')" :active="request()->routeIs('prof')" class="text-white">
+                        {{ __('Prof Account') }}
+                            <div class="ms-2">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                    </x-nav-link> 
+                @endif 
                     <x-nav-link :href="route('export')" :active="request()->routeIs('export')" class="text-white">
                         {{ __('Export') }}
                     </x-nav-link>                    
                 </div>
             </div>
-
+            
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">

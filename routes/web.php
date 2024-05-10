@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ExamController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,14 +12,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/test', function () {
-    return view('test');
-})->middleware(['auth', 'verified'])->name('test');
 Route::get('/export', function () {
     return view('export');
 })->middleware(['auth', 'verified'])->name('export');
 Route::get('/student', [StudentController::class, 'student'])->middleware(['auth', 'verified'])->name('student');
-
+Route::get('/prof', [StudentController::class, 'prof'])->middleware(['auth', 'verified'])->name('prof');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -29,6 +27,21 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/add', [StudentController::class, 'addstudent'])->name('addStudent');
 
+
+
+
+
+
+
+Route::get('/quizes', [ExamController::class, 'Quizes'])->name('quizes');
+Route::post('/addquiz', [ExamController::class, 'addQuizes'])->name('addquiz');
+Route::get('/json', [ExamController::class, 'quizJson'])->name('quizJson');
+
+
+
+
+Route::get('/midterm', [ExamController::class, 'term'])->name('midterm');
+Route::get('/finals', [ExamController::class, 'finals'])->name('finals');
 
 
 

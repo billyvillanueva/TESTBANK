@@ -10,6 +10,9 @@ class StudentController extends Controller
         $data = StudentModel::all();
         return view('student', ['data'=>$data]);
     }
+    function prof(){
+        return view('exam/term');
+    }
    public function addstudent(Request $request){
         $data = new StudentModel();
         $data->studentNumber = $request->stud_no;
