@@ -10,21 +10,38 @@ class ExamController extends Controller
     {
         return view('exam/quizes');
     }
-    function addQuizes(Request $request)
+    function deleteQuiz($id)
     {
-      
-
-        // $model = new QuizModel();
-        // $model -> Qnum = $data->Qnum;
-        // $model -> Question = $data->Question;
-        // $model -> Aa = $data->Aa;
-        // $model -> Ab = $data->Ab;
-        // $model -> Ac = $data->Ac;
-        // $model -> Ad = $data->Ad;
-        // $model -> Akey = $data->Akey;
-        // $model -> department_name = "Enginnering";
-        // $model->save();
-        return dd($jsonData);
+        $data = QuizModel::find($id);
+        $data -> delete();
+        return redirect()->back();
+    }
+    function addQuiz(Request $request)
+    {
+        $model = new QuizModel();
+        $model -> Question = $request->Question;
+        $model -> Aa = $request->Aa;
+        $model -> Ab = $request->Ab;
+        $model -> Ac = $request->Ac;
+        $model -> Ad = $request->Ad;
+        $model -> Akey = $request->Akey;
+        $model -> department_name = "Enginnering";
+        $model->save();
+        return redirect()->back();
+    }
+    function saveEditQuiz(Request $request)
+    {
+        $id = $request->QuizID;
+        $model = QuizModel::find($id);
+        $model -> Question = $request->question;
+        $model -> Aa = $request->answerA;
+        $model -> Ab = $request->answerB;
+        $model -> Ac = $request->answerC;
+        $model -> Ad = $request->answerD;
+        $model -> Akey = $request->Akey;
+        $model -> department_name = "Enginnering";
+        $model->save();
+        return redirect()->back();
     }
     function quizJson()
     {

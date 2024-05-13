@@ -7,6 +7,11 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="flex justify-end p-6">
+                <div class="w-50 flex justify-end">
+                    <div id="searchQuiz" class="w-75"></div> 
+                </div>
+            </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
@@ -50,11 +55,63 @@
 </style>
 <h2>Quiz</h2>
 
+<!-- add row -->
 @viteReactRefresh
 @vite('resources/js/app.js')
 <div id="quizpage"></div>
+<div class="flex justify-between">
+<x-primary-button data-bs-toggle="modal" data-bs-target="#AddQuizModal" data-bs-whatever="@mdo">{{__('Add Row')}}</x-primary-button>
+<div id="paginateQuiz"></div>
+</div>
 
 
+
+                                                                  
+<div class="modal fade" id="AddQuizModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Question</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST">
+        {{ csrf_field() }}
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Question:</label>
+            <textarea name="Question" class="form-control" id="message-text"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">A:</label>
+            <input name="Aa" type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">B:</label>
+            <input name="Ab" type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">C:</label>
+            <input name="Ac" type="text" class="form-control" id="recipient-name">
+          </div><div class="mb-3">
+            <label for="recipient-name" class="col-form-label">D:</label>
+            <input name="Ad" type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">key:</label>
+            <input name="Akey" type="text" class="form-control" id="recipient-name">
+          </div>
+          <x-primary-button formaction="{{route('addQuiz')}}">{{__('Add Row')}}</x-primary-button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end add row -->
+
+<form method="post" action="{{route('saveEdit')}}"> 
+{{ csrf_field() }}
+    <div id="EditPortal"></div>
+</form>
 
   
 
@@ -66,19 +123,3 @@
     </div>   
    
 </x-app-layout>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // Make columns resizable
-        $("#resizable").find("th, td").resizable({
-            handles: "e"
-        });
-
-        // Make rows resizable
-        $("#resizable").find("tr").resizable({
-            handles: "s",
-            minHeight: 50
-        });
-    });
-</script>

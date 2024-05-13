@@ -34,7 +34,9 @@ Route::post('/add', [StudentController::class, 'addstudent'])->name('addStudent'
 
 
 Route::get('/quizes', [ExamController::class, 'Quizes'])->name('quizes');
-Route::post('/addquiz', [ExamController::class, 'addQuizes'])->name('addquiz');
+Route::get('/delete/{id}', [ExamController::class, 'deleteQuiz'])->name('deleteQuiz');
+Route::post('/addQuiz', [ExamController::class, 'addQuiz'])->name('addQuiz');
+Route::post('/saveEdit', [ExamController::class, 'saveEditQuiz'])->name('saveEdit');
 Route::get('/json', [ExamController::class, 'quizJson'])->name('quizJson');
 
 
